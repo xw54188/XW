@@ -7,8 +7,6 @@ workflows:
         ANDROID_SDK_ROOT: /usr/local/android-sdk
       groups:
         - android
-      sdk:  # 指定 JDK 版本
-        - java: 17
     scripts:
       - name: 安装 Android SDK 平台和构建工具
         script: |
@@ -24,4 +22,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - your-email@example.com  # 你可以改成你的邮箱，或保留不变
+          - your-email@example.com
