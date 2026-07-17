@@ -1,0 +1,27 @@
+workflows:
+  android-workflow:
+    name: Android Build
+    max_build_duration: 30
+    environment:
+      vars:
+        ANDROID_SDK_ROOT: /usr/local/android-sdk
+      groups:
+        - android
+      sdk:  # 指定 JDK 版本
+        - java: 17
+    scripts:
+      - name: 安装 Android SDK 平台和构建工具
+        script: |
+          sdkmanager "platforms;android-33" "build-tools;33.0.2"
+      - name: 获取 Gradle 执行权限
+        script: |
+          chmod +x gradlew
+      - name: 构建 Debug APK
+        script: |
+          ./gradlew assembleDebug --no-daemon
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com  # 你可以改成你的邮箱，或保留不变
