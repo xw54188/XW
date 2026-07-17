@@ -10,7 +10,7 @@ workflows:
     scripts:
       - name: 安装 Android SDK 平台和构建工具
         script: |
-          sdkmanager "platforms;android-33" "build-tools;33.0.2"
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-33" "build-tools;33.0.2"
       - name: 获取 Gradle 执行权限
         script: |
           chmod +x gradlew
