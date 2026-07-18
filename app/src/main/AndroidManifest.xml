@@ -1,93 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 左面板 -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+    <!-- 存储权限（Android 6.0+ 需动态申请，但清单中必须声明） -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />  <!-- Android 10 以上不再需要 WRITE，但兼容旧版 -->
+    <!-- Android 11+ 如果需访问所有文件，还需申请 MANAGE_EXTERNAL_STORAGE，但需用户手动授权 -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="4dp">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:requestLegacyExternalStorage="true">   <!-- 兼容 Android 10 以下 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
-            <Button
-                android:id="@+id/left_back"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:text="←"
-                android:textSize="18sp"
-                android:padding="0dp" />
-
-            <TextView
-                android:id="@+id/left_path"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/sdcard"
-                android:textSize="14sp"
-                android:ellipsize="start"
-                android:singleLine="true"
-                android:layout_marginStart="4dp" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/left_panel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="#888888" />
-
-    <!-- 右面板 -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="4dp">
-
-            <Button
-                android:id="@+id/right_back"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:text="←"
-                android:textSize="18sp"
-                android:padding="0dp" />
-
-            <TextView
-                android:id="@+id/right_path"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/sdcard"
-                android:textSize="14sp"
-                android:ellipsize="start"
-                android:singleLine="true"
-                android:layout_marginStart="4dp" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/right_panel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-</LinearLayout>
+</manifest>
