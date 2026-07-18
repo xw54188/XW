@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.xwguanliqi.application"
-    compileSdk = 36
+    compileSdk = 33
     buildToolsVersion = "33.0.2"   // 明确指定本地已有的版本
 
     defaultConfig {
